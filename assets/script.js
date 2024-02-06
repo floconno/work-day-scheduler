@@ -27,7 +27,7 @@ $(function () {
           $(this).addClass("future");
         }
     });
-    // TODO: Add code to display the current date in the header of the page.
+    //Displays the current date in the header of the page.
     var today = dayjs(); 
     var dayWeek = today.format('dddd, MMMM DD[th]');
     $('#currentDay').text(dayWeek); 
