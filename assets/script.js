@@ -11,9 +11,10 @@ $(function () {
     // useful when saving the description in local storage?
     $(".sveBtn").on("click", function () {
       console.log(this);
-      var timeBlock = $(this).parent('id');
-      var input = $(this).sibling('.description');
       
+      var timeBlock = $(this).parent().attr('id');
+      var input = $(this).siblings('.description').val();
+
 
     });
 
