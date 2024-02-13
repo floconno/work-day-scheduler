@@ -1,30 +1,24 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+// ensures that the code isn't run until the browser has finished rendering all the elements in the html
 $(function () {
-
-    // TODO: Add a listener for click events on the save button. This code should
-    // use the id in the containing time-block as a key to save the user input in
-    // local storage. HINT: What does `this` reference in the click listener
-    // function? How can DOM traversal be used to get the "hour-x" id of the
-    // time-block containing the button that was clicked? How might the id be
-    // useful when saving the description in local storage?
+    // On "click" of the save button, the users input into the time-block text area with a class of description is saved to the local storage
     $(".saveBtn").on("click", function () {
       console.log(this);
-
+      // targets the save button's parent (the div with class .time-block)
       var timeBlock = $(this).parent().attr('id');
       console.log(timeBlock);
+      // targets the save button's sibling (the text area with class .description)
       var userInput = $(this).siblings('.description').val();
       console.log(userInput);
       
-      
+      // sets the users input to the text area in the time block to the local storage
       localStorage.setItem(timeBlock, userInput);
 
     });
 
+    // getting the hour from each time block 
     $(".time-block").each(function () {
       var hour = +this.id.split("-").pop();
-
+      // comparing the hour to the current hour of the day to determine if it is in the past, the current hour, of if it is in the future
       var currentHour = dayjs().hour();
         if (hour < currentHour) {
           $(this).addClass("past");
@@ -35,9 +29,7 @@ $(function () {
         }
 
     });
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this
+    // targets the id of each time-block based on the hour as well as the hours text area entry with the class .description and gets the value of the text area entry for each hour from local storage
     $("#hour-9 .description").val(localStorage.getItem('hour-9'));
     $("#hour-10 .description").val(localStorage.getItem('hour-10'));
     $("#hour-11 .description").val(localStorage.getItem('hour-11'));
